@@ -2397,3 +2397,285 @@ button, input, select, textarea {
     font-size: 0.74rem;
   }
 }
+
+/* --------------------------------------------------------------------------
+   STREAMLINED BELMONT SPOTLIGHT & FINANCIAL ARCHITECTURE (FLAWLESS MOBILE)
+   -------------------------------------------------------------------------- */
+.belmont-spotlight-grid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 2.2rem;
+  align-items: start;
+}
+
+.belmont-spotlight-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 2.2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.spotlight-sub {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--brand-orange);
+  letter-spacing: 0.08em;
+}
+
+.spotlight-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin: 0.3rem 0 0.8rem;
+  line-height: 1.3;
+}
+
+.spotlight-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.spotlight-feature-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.feature-icon-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--brand-orange-light);
+  color: var(--brand-orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.feature-text-block strong {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--text-dark);
+  margin-bottom: 0.15rem;
+}
+
+.feature-text-block p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.belmont-floorplan-container {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 1.8rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.floorplan-tab-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--bg-surface);
+  padding: 0.25rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-light);
+  margin-bottom: 1.4rem;
+}
+
+/* Financial Matrix Overhaul */
+.financial-matrix-wrapper {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 2.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.matrix-config-bar {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 1.5rem;
+  background: #FFFFFF;
+  padding: 1.4rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+}
+
+.config-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.config-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-dark);
+}
+
+.matrix-dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.matrix-return-card {
+  background: #FFFFFF;
+  border: 2px solid var(--brand-orange);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+  box-shadow: var(--shadow-md);
+}
+
+.return-headline-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 1.2rem;
+  gap: 0.8rem;
+}
+
+.return-kicker {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.return-big-number {
+  font-family: var(--font-numbers);
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: var(--brand-orange);
+  line-height: 1.1;
+}
+
+.return-yield-badge {
+  background: var(--brand-orange-light);
+  color: var(--brand-orange);
+  border: 1px solid var(--brand-orange-border);
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.return-metrics-subgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.return-sub-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.metric-sub-lbl {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.metric-sub-val {
+  font-family: var(--font-numbers);
+  font-size: 1.18rem;
+  font-weight: 800;
+  color: var(--text-dark);
+}
+
+.matrix-milestone-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.2rem;
+}
+
+.milestone-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 0.6rem;
+}
+
+/* Mobile Polish */
+@media (max-width: 992px) {
+  .belmont-spotlight-grid,
+  .matrix-config-bar,
+  .matrix-dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .belmont-spotlight-card,
+  .belmont-floorplan-container,
+  .financial-matrix-wrapper,
+  .matrix-config-bar,
+  .matrix-return-card,
+  .matrix-milestone-card {
+    padding: 1.2rem !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  .return-headline-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .return-big-number {
+    font-size: 1.85rem;
+  }
+
+  .return-metrics-subgrid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .floorplan-tab-bar {
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+  }
+
+  .floorplan-tab-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .floorplan-pill {
+    flex-shrink: 0;
+    font-size: 0.74rem;
+    padding: 0.4rem 0.75rem;
+  }
+}
