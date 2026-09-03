@@ -178,72 +178,62 @@
   </section>
 
   <!-- Flagship Spotlight: Belmont Residence -->
-  <section class="section" id="belmont-focus" style="background: var(--bg-surface); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);">
+  <section class="section belmont-section-mobile" id="belmont-focus">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Flagship Development</span>
         <h2 class="section-title">Belmont Residence: The Ikoyi of Akoka</h2>
         <p class="section-desc">
-          Situated directly in the Yaba/Akoka intellectual and tech artery, Belmont Residence captures year-round corporate, university executive, and visiting diaspora short-let demand.
+          Situated directly in the Yaba/Akoka intellectual and tech corridor, capturing year-round corporate, academic, and diaspora short-let demand.
         </p>
       </div>
 
-      <!-- Belmont Architecture & Floor Plan Grid -->
-      <div class="belmont-spotlight-grid">
-        <!-- Highlights Column -->
-        <div class="belmont-spotlight-card">
-          <div class="spotlight-header">
-            <span class="spotlight-sub">Prime Corridor Asset</span>
-            <h3 class="spotlight-title">Engineered for Maximum Short-Let Occupancy</h3>
-          </div>
-          
-          <p style="color: var(--text-body); font-size: 0.92rem; line-height: 1.65; margin-bottom: 1.2rem;">
-            Belmont combines the privacy and high-specification finishing of Ikoyi with the intense rental velocity of mainland Lagos. Managed 100% turnkey by our on-site hospitality desk.
-          </p>
-
-          <div class="spotlight-features-list">
-            <div class="spotlight-feature-row">
-              <div class="feature-icon-circle">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <div class="feature-text-block">
-                <strong>24/7 Unbroken Power Architecture</strong>
-                <p>Heavy-duty industrial diesel generators coupled with a solar hybrid battery system.</p>
-              </div>
-            </div>
-
-            <div class="spotlight-feature-row">
-              <div class="feature-icon-circle">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <div class="feature-text-block">
-                <strong>Rooftop Resident Pool & Sky Lounge</strong>
-                <p>Private elevated sundeck and lounge commanding premium nightly short-let rates.</p>
-              </div>
-            </div>
-
-            <div class="spotlight-feature-row">
-              <div class="feature-icon-circle">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <div class="feature-text-block">
-                <strong>Keyless Smart-Home Automation</strong>
-                <p>Digital access codes generated remotely for verified short-let guests upon check-in.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Interactive Layout & Spec Visualizer Column -->
-        <div class="belmont-floorplan-container">
-          <div class="floorplan-tab-bar">
+      <!-- Clean Architectural Showcase -->
+      <div class="belmont-unified-wrap">
+        <!-- Floor Plan & Space Visualizer -->
+        <div class="belmont-floorplan-unified">
+          <div class="floorplan-pills-scroll">
             <button class="floorplan-pill active" data-unit="studio">Studio (42 m²)</button>
-            <button class="floorplan-pill" data-unit="1bed">1-Bed Suite (68 m²)</button>
+            <button class="floorplan-pill" data-unit="1bed">1-Bedroom Suite (68 m²)</button>
             <button class="floorplan-pill" data-unit="penthouse">Penthouse (125 m²)</button>
           </div>
 
-          <div id="floorplanContentGrid">
-            <!-- Dynamically populated by main.ts -->
+          <!-- Target container for floorplan specs -->
+          <div class="floorplan-view-pane" id="floorplanContentGrid">
+            <!-- Populated by main.ts -->
+          </div>
+        </div>
+
+        <!-- Belmont Core Amenities Row -->
+        <div class="belmont-amenities-strip">
+          <div class="amenity-strip-item">
+            <div class="strip-icon-box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="strip-text">
+              <strong>24/7 Power Architecture</strong>
+              <span>Dual industrial diesel generators & solar hybrid system</span>
+            </div>
+          </div>
+
+          <div class="amenity-strip-item">
+            <div class="strip-icon-box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="strip-text">
+              <strong>Rooftop Resident Pool</strong>
+              <span>Elevated sundeck & sky lounge commanding premium rates</span>
+            </div>
+          </div>
+
+          <div class="amenity-strip-item">
+            <div class="strip-icon-box">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="strip-text">
+              <strong>Keyless Smart Automation</strong>
+              <span>Remote digital access codes generated for short-let guests</span>
+            </div>
           </div>
         </div>
       </div>
@@ -251,21 +241,21 @@
   </section>
 
   <!-- Official Financial Architecture Section -->
-  <section class="section" id="roi-calculator" style="background: #FFFFFF;">
+  <section class="section matrix-section-mobile" id="roi-calculator">
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Financial Architecture</span>
         <h2 class="section-title">Official Investment & Cashflow Matrix</h2>
         <p class="section-desc">
-          Properties treated as financial instruments. Review Sekured's locked return schedules, deposit milestone tranches, and quarterly distribution yields.
+          Properties structured as financial instruments. Review Sekured's verified cashflow schedules, deposit milestone tranches, and quarterly distribution yields.
         </p>
       </div>
 
-      <div class="financial-matrix-wrapper">
-        <!-- Configuration Bar -->
-        <div class="matrix-config-bar">
-          <div class="config-field">
-            <label class="config-label" for="matrixUnitSelect">Select Residence Tier</label>
+      <div class="matrix-native-container">
+        <!-- Selectors -->
+        <div class="matrix-inputs-row">
+          <div class="input-field-block">
+            <label class="field-lbl" for="matrixUnitSelect">Select Residence Tier</label>
             <select class="calc-select" id="matrixUnitSelect">
               <option value="belmont-studio" selected>Belmont Residence — Studio Apartment (₦55M)</option>
               <option value="belmont-1bed">Belmont Residence — 1-Bedroom Suite (₦85M)</option>
@@ -278,8 +268,8 @@
             </select>
           </div>
 
-          <div class="config-field">
-            <label class="config-label">Payment Plan</label>
+          <div class="input-field-block">
+            <label class="field-lbl">Acquisition Structure</label>
             <div class="calc-toggle-pill">
               <button class="calc-toggle-btn active" id="toggleDepositPlanBtn">Deposit-to-Own Milestone</button>
               <button class="calc-toggle-btn" id="toggleOutrightPlanBtn">Outright Purchase</button>
@@ -287,61 +277,52 @@
           </div>
         </div>
 
-        <!-- Main Financial Dashboard -->
-        <div class="matrix-dashboard-grid">
-          <!-- Left: Official Return Metrics -->
-          <div class="matrix-return-card">
-            <div class="return-headline-row">
-              <div>
-                <span class="return-kicker">Audited Annual Net Return</span>
-                <div class="return-big-number" id="matrixAnnualRoi">₦7,200,000</div>
-              </div>
-              <span class="return-yield-badge" id="matrixRoiYieldPercent">13.1% Net Yield</span>
-            </div>
-
-            <div class="return-metrics-subgrid">
-              <div class="return-sub-metric">
-                <span class="metric-sub-lbl">Quarterly Distribution</span>
-                <span class="metric-sub-val" id="matrixQuarterlyPayout">₦1,800,000</span>
-              </div>
-              <div class="return-sub-metric">
-                <span class="metric-sub-lbl">Initial Capital Entry</span>
-                <span class="metric-sub-val" id="matrixInitialEntry">₦20,000,000</span>
-              </div>
-              <div class="return-sub-metric">
-                <span class="metric-sub-lbl">Asset Outright Value</span>
-                <span class="metric-sub-val" id="matrixOutrightPrice">₦55,000,000</span>
-              </div>
-              <div class="return-sub-metric">
-                <span class="metric-sub-lbl">5-Yr Projected Appreciation</span>
-                <span class="metric-sub-val orange-text" id="matrixCapitalGain">+35% (₦19.2M)</span>
-              </div>
-            </div>
-
-            <a href="#" id="matrixRequestPlanBtn" class="btn btn-primary btn-block btn-lg" style="margin-top: 0.6rem;">
-              Request Official Allocation & Contract (WhatsApp)
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </a>
-          </div>
-
-          <!-- Right: Milestone Timeline & Governance -->
-          <div class="matrix-milestone-card">
-            <div class="milestone-card-top">
-              <span class="milestone-box-title">Milestone Payment Breakdown</span>
-              <span class="milestone-badge" id="milestonePlanBadge">3 Tranches</span>
-            </div>
-
-            <div class="milestone-steps-list" id="milestoneStepsList">
-              <!-- Populated by main.ts -->
-            </div>
-
-            <div class="management-guarantee-note">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--brand-orange); flex-shrink: 0; margin-top: 2px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              <p style="font-size: 0.78rem; color: var(--text-body); line-height: 1.45;">
-                <strong>Turnkey Short-Let Guarantee:</strong> Automated quarterly distributions. Guest vetting, housekeeping, and maintenance handled 100% by Sekured Hospitality Desk.
-              </p>
+        <!-- Mobile Financial Statement Card -->
+        <div class="fintech-statement-card">
+          <div class="statement-hero-header">
+            <span class="statement-lbl">Audited Annual Net Return</span>
+            <div class="statement-big-figure" id="matrixAnnualRoi">₦7,200,000</div>
+            <div class="statement-tags-line">
+              <span class="statement-pill-orange" id="matrixRoiYieldPercent">13.1% Published Annual Yield</span>
+              <span class="statement-pill-navy" id="matrixQuarterlyPayout">₦1,800,000 / quarter</span>
             </div>
           </div>
+
+          <div class="statement-metrics-table">
+            <div class="statement-row">
+              <span class="s-lbl">Initial Capital Entry</span>
+              <span class="s-val" id="matrixInitialEntry">₦20,000,000</span>
+            </div>
+            <div class="statement-row">
+              <span class="s-lbl">Total Outright Asset Value</span>
+              <span class="s-val" id="matrixOutrightPrice">₦55,000,000</span>
+            </div>
+            <div class="statement-row">
+              <span class="s-lbl">Estimated 5-Yr Capital Gain</span>
+              <span class="s-val orange-text" id="matrixCapitalGain">+35% (₦19.2M)</span>
+            </div>
+          </div>
+
+          <!-- Vertical Timeline for Milestones -->
+          <div class="timeline-wrapper">
+            <div class="timeline-title-row">
+              <span class="timeline-title">Payment Milestone Schedule</span>
+              <span class="timeline-tag" id="milestonePlanBadge">3 Tranches</span>
+            </div>
+            <div class="timeline-steps-stream" id="milestoneStepsList">
+              <!-- Dynamically populated by main.ts -->
+            </div>
+          </div>
+
+          <div class="statement-handsfree-note">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--brand-orange); flex-shrink: 0;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>100% Turnkey: Guest vetting, housekeeping, maintenance, and automated quarterly distributions handled by Sekured Hospitality Desk.</span>
+          </div>
+
+          <a href="#" id="matrixRequestPlanBtn" class="btn btn-primary btn-block btn-lg" style="margin-top: 0.5rem;">
+            Request Official Allocation & Contract (WhatsApp)
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
         </div>
       </div>
     </div>

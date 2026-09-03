@@ -181,43 +181,57 @@ function updateMatrix() {
   // Milestone Schedule Breakdown
   if (stepsList && planBadge) {
     if (matrixState.isDepositMode) {
-      planBadge.textContent = '3 Milestones';
+      planBadge.textContent = '3 Milestone Tranches';
       const balance = unit.outrightPriceNgn - unit.initialDepositNgn;
       const tranche2 = Math.round(balance * 0.5);
       const tranche3 = balance - tranche2;
 
       stepsList.innerHTML = `
-        <div class="milestone-step-item">
-          <div class="step-info-col">
-            <span class="step-title">Tranche 1: Initial Allocation Deposit</span>
-            <span class="step-timing">Upon signing allocation agreement</span>
+        <div class="timeline-step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-flex-row">
+              <span class="step-heading">Initial Allocation Deposit</span>
+              <span class="step-val">${formatNairaFull(unit.initialDepositNgn)}</span>
+            </div>
+            <span class="step-caption">Due upon contract signing</span>
           </div>
-          <span class="step-amount">${formatNairaFull(unit.initialDepositNgn)}</span>
         </div>
-        <div class="milestone-step-item">
-          <div class="step-info-col">
-            <span class="step-title">Tranche 2: Superstructure Milestone</span>
-            <span class="step-timing">Upon roofing & MEP rough-in completion</span>
+
+        <div class="timeline-step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-flex-row">
+              <span class="step-heading">Superstructure Milestone</span>
+              <span class="step-val">${formatNairaFull(tranche2)}</span>
+            </div>
+            <span class="step-caption">Due upon roofing & MEP rough-in</span>
           </div>
-          <span class="step-amount">${formatNairaFull(tranche2)}</span>
         </div>
-        <div class="milestone-step-item">
-          <div class="step-info-col">
-            <span class="step-title">Tranche 3: Handover & Deed Execution</span>
-            <span class="step-timing">Upon completion & key handover</span>
+
+        <div class="timeline-step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-flex-row">
+              <span class="step-heading">Handover & Legal Title</span>
+              <span class="step-val">${formatNairaFull(tranche3)}</span>
+            </div>
+            <span class="step-caption">Due upon completion & key handover</span>
           </div>
-          <span class="step-amount">${formatNairaFull(tranche3)}</span>
         </div>
       `;
     } else {
-      planBadge.textContent = 'Outright Single Payment';
+      planBadge.textContent = 'Single Outright Payment';
       stepsList.innerHTML = `
-        <div class="milestone-step-item">
-          <div class="step-info-col">
-            <span class="step-title">100% Outright Purchase & Title Conveyance</span>
-            <span class="step-timing">Immediate contract execution, deed conveyance & priority key handover</span>
+        <div class="timeline-step">
+          <div class="step-num">✓</div>
+          <div class="step-content">
+            <div class="step-flex-row">
+              <span class="step-heading">100% Outright Acquisition</span>
+              <span class="step-val">${formatNairaFull(unit.outrightPriceNgn)}</span>
+            </div>
+            <span class="step-caption">Immediate Contract of Sale & Deed of Conveyance</span>
           </div>
-          <span class="step-amount">${formatNairaFull(unit.outrightPriceNgn)}</span>
         </div>
       `;
     }
@@ -419,15 +433,15 @@ function renderFloorplan(unitKey: 'studio' | '1bed' | 'penthouse') {
 
   const data = FLOORPLAN_DATA[unitKey];
   const dimensionsHtml = data.dimensions.map(d => `
-    <div class="spec-row">
-      <span class="spec-lbl">${d.label}</span>
-      <span class="spec-val">${d.value}</span>
+    <div class="clean-dim-row">
+      <span class="dim-label">${d.label}</span>
+      <span class="dim-value">${d.value}</span>
     </div>
   `).join('');
 
   const inclusionsHtml = data.inclusions.map(inc => `
-    <div style="display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.8rem; color: var(--text-body);">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--brand-orange); flex-shrink: 0; margin-top: 2px;"><polyline points="20 6 9 17 4 12"/></svg>
+    <div class="clean-inc-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--brand-orange); flex-shrink: 0; margin-top: 3px;"><polyline points="20 6 9 17 4 12"/></svg>
       <span>${inc}</span>
     </div>
   `).join('');
@@ -442,38 +456,30 @@ Hello SEKURED! Please send me the complete architectural blueprint PDF and speci
   const waUrl = createWhatsAppUrl(waMsg);
 
   container.innerHTML = `
-    <div class="floorplan-blueprint-card">
-      <span class="blueprint-badge">${data.areaSqm} SQM (${data.areaSqft} SQFT)</span>
-      <div class="blueprint-graphic-box">
-        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="color: var(--brand-navy); margin-bottom: 0.5rem;"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9M15 9v12"/></svg>
-        <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-dark);">${data.title}</span>
-        <span style="font-size: 0.74rem; color: var(--text-muted);">Scale 1:50 Architectural Blueprint</span>
-      </div>
-      <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-orange btn-block">
-        Download Full Architectural PDF
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-      </a>
-    </div>
-
-    <div class="floorplan-specs-card">
-      <div class="specs-title-row">
+    <div class="floorplan-clean-card">
+      <div class="floorplan-hero-row">
         <div>
-          <h4 class="specs-unit-title">${data.title}</h4>
-          <span style="font-size: 0.8rem; color: var(--text-muted);">Ref Code: ${data.refCode}</span>
+          <h4 class="floorplan-title">${data.title}</h4>
+          <span class="floorplan-meta">${data.areaSqm} m² (${data.areaSqft} sqft) • Ref: ${data.refCode}</span>
         </div>
-        <span class="specs-unit-price">${formatNaira(data.priceNgn)}</span>
+        <div class="floorplan-price-block">
+          <span class="floorplan-price-kicker">From</span>
+          <span class="floorplan-price-val">${formatNaira(data.priceNgn)}</span>
+        </div>
       </div>
 
-      <div class="specs-table">
+      <div class="floorplan-dims-list">
         ${dimensionsHtml}
       </div>
 
-      <div style="display: flex; flex-direction: column; gap: 0.4rem; padding-top: 0.4rem;">
-        <span style="font-size: 0.76rem; font-weight: 700; text-transform: uppercase; color: var(--text-dark);">Architectural Inclusions:</span>
-        <div style="display: flex; flex-direction: column; gap: 0.35rem;">
-          ${inclusionsHtml}
-        </div>
+      <div class="floorplan-inc-list">
+        ${inclusionsHtml}
       </div>
+
+      <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-orange btn-block" style="margin-top: 0.5rem;">
+        Download Architectural Blueprint PDF
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+      </a>
     </div>
   `;
 }
