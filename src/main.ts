@@ -343,11 +343,178 @@ Hello SEKURED Sales Desk! I would like to confirm my inspection reservation for 
 // ---------------------------------------------------------------------------
 // 5. TABS & INITIALIZATION
 // ---------------------------------------------------------------------------
+
+// ---------------------------------------------------------------------------
+// 6. BELMONT FLOOR PLAN VISUALIZER
+// ---------------------------------------------------------------------------
+const FLOORPLAN_DATA = {
+  studio: {
+    title: 'Studio Executive Suite',
+    areaSqm: 42,
+    areaSqft: 452,
+    priceNgn: 55000000,
+    depositNgn: 20000000,
+    refCode: 'SEK-BELMONT-STD',
+    dimensions: [
+      { label: 'Studio Living & Bedroom Lounge', value: '5.2m x 4.4m (22.8 m²)' },
+      { label: 'Executive Chef Kitchenette', value: '2.6m x 1.8m (4.7 m²)' },
+      { label: 'Ensuite Designer Bathroom', value: '2.4m x 1.6m (3.8 m²)' },
+      { label: 'Private Sunset Balcony', value: '2.8m x 1.4m (3.9 m²)' },
+      { label: 'Ceiling Height Void', value: '3.0m Clear Height' }
+    ],
+    inclusions: [
+      'Biometric Keyless Entry & Remote Guest Access Code',
+      'Acoustic Double-Glazed Soundproof Window Assemblies',
+      'Concealed European Sanitary Ware & Rain Shower',
+      'Pre-Wired High-Speed Dedicated Fiber Conduit'
+    ]
+  },
+  '1bed': {
+    title: '1-Bedroom Luxury Residence',
+    areaSqm: 68,
+    areaSqft: 732,
+    priceNgn: 85000000,
+    depositNgn: 30000000,
+    refCode: 'SEK-BELMONT-1BED',
+    dimensions: [
+      { label: 'Open-Plan Living & Dining Salon', value: '6.4m x 4.2m (26.9 m²)' },
+      { label: 'Master Bedroom Suite', value: '4.8m x 3.8m (18.2 m²)' },
+      { label: 'Gourmet Island Kitchen', value: '3.2m x 2.2m (7.0 m²)' },
+      { label: 'Ensuite Bathroom + Guest Cloakroom', value: '2.8m x 2.0m (5.6 m²)' },
+      { label: 'Covered Al-Fresco Terrace', value: '3.6m x 1.6m (5.8 m²)' }
+    ],
+    inclusions: [
+      'Dual-Zone App-Controlled Climate Air Conditioning',
+      'Solid Quartz Countertops & Soft-Close Italian Cabinetry',
+      'Built-in Floor-to-Ceiling Wardrobes with LED Reveal',
+      'Dedicated Car Parking Space Allocated On Title'
+    ]
+  },
+  penthouse: {
+    title: '2-Bedroom Regal Penthouse',
+    areaSqm: 125,
+    areaSqft: 1345,
+    priceNgn: 150000000,
+    depositNgn: 50000000,
+    refCode: 'SEK-BELMONT-PENT',
+    dimensions: [
+      { label: 'Double-Volume Penthouse Grand Salon', value: '8.2m x 5.4m (44.3 m²)' },
+      { label: 'Primary Master Suite with Walk-In Closet', value: '5.8m x 4.6m (26.7 m²)' },
+      { label: 'Secondary Ensuite Guest Bedroom', value: '4.4m x 3.8m (16.7 m²)' },
+      { label: 'Chef Prep Island Kitchen & Pantry', value: '4.0m x 2.8m (11.2 m²)' },
+      { label: 'Wrap-Around Panoramic Horizon Terrace', value: '7.8m x 2.2m (17.2 m²)' }
+    ],
+    inclusions: [
+      '3.4m Cathedral Ceiling Heights in Main Living Area',
+      'Private Keycard Elevator Access Direct to Penthouse Landing',
+      'Dual Ensuite Italian Stone Baths & Freestanding Soaking Tub',
+      'Two (2) Covered Reserved Parking Bays in Secured Basement'
+    ]
+  }
+};
+
+function renderFloorplan(unitKey: 'studio' | '1bed' | 'penthouse') {
+  const container = document.getElementById('floorplanContentGrid');
+  if (!container) return;
+
+  const data = FLOORPLAN_DATA[unitKey];
+  const dimensionsHtml = data.dimensions.map(d => `
+    <div class="spec-row">
+      <span class="spec-lbl">${d.label}</span>
+      <span class="spec-val">${d.value}</span>
+    </div>
+  `).join('');
+
+  const inclusionsHtml = data.inclusions.map(inc => `
+    <div style="display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.8rem; color: var(--text-body);">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color: var(--brand-orange); flex-shrink: 0; margin-top: 2px;"><polyline points="20 6 9 17 4 12"/></svg>
+      <span>${inc}</span>
+    </div>
+  `).join('');
+
+  const waMsg = `*BELMONT ARCHITECTURAL BLUEPRINT REQUEST*
+Unit: ${data.title} (${data.areaSqm} m² / ${data.areaSqft} sqft)
+Ref: ${data.refCode}
+Outright Price: ${formatNairaFull(data.priceNgn)}
+Initial Deposit: ${formatNairaFull(data.depositNgn)}
+
+Hello SEKURED! Please send me the complete architectural blueprint PDF and specification sheet for this unit.`;
+  const waUrl = createWhatsAppUrl(waMsg);
+
+  container.innerHTML = `
+    <div class="floorplan-blueprint-card">
+      <span class="blueprint-badge">${data.areaSqm} SQM (${data.areaSqft} SQFT)</span>
+      <div class="blueprint-graphic-box">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="color: var(--brand-navy); margin-bottom: 0.5rem;"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9M15 9v12"/></svg>
+        <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-dark);">${data.title}</span>
+        <span style="font-size: 0.74rem; color: var(--text-muted);">Scale 1:50 Architectural Blueprint</span>
+      </div>
+      <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-orange btn-block">
+        Download Full Architectural PDF
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+      </a>
+    </div>
+
+    <div class="floorplan-specs-card">
+      <div class="specs-title-row">
+        <div>
+          <h4 class="specs-unit-title">${data.title}</h4>
+          <span style="font-size: 0.8rem; color: var(--text-muted);">Ref Code: ${data.refCode}</span>
+        </div>
+        <span class="specs-unit-price">${formatNaira(data.priceNgn)}</span>
+      </div>
+
+      <div class="specs-table">
+        ${dimensionsHtml}
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 0.4rem; padding-top: 0.4rem;">
+        <span style="font-size: 0.76rem; font-weight: 700; text-transform: uppercase; color: var(--text-dark);">Architectural Inclusions:</span>
+        <div style="display: flex; flex-direction: column; gap: 0.35rem;">
+          ${inclusionsHtml}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function initFloorplans() {
+  renderFloorplan('studio');
+  const pills = document.querySelectorAll('.floorplan-pill');
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      const unit = (pill as HTMLElement).dataset.unit as 'studio' | '1bed' | 'penthouse';
+      renderFloorplan(unit);
+    });
+  });
+}
+
+// ---------------------------------------------------------------------------
+// 7. INVESTOR FAQ ACCORDION
+// ---------------------------------------------------------------------------
+function initFaqAccordion() {
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const btn = item.querySelector('.faq-question-btn');
+    btn?.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+      faqItems.forEach(i => i.classList.remove('active'));
+      if (!isActive) {
+        item.classList.add('active');
+      }
+    });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   renderProjects('all');
   renderTestimonials();
   initMatrix();
   initInspectionDrawer();
+  initFloorplans();
+  initFaqAccordion();
 
   // Set default date for inspection (tomorrow)
   const dateInput = document.getElementById('inspPreferredDate') as HTMLInputElement;

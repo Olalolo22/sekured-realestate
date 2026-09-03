@@ -1769,3 +1769,264 @@ button, input, select, textarea {
     font-size: 1.2rem;
   }
 }
+
+/* --------------------------------------------------------------------------
+   BELMONT ARCHITECTURAL FLOOR PLAN VISUALIZER
+   -------------------------------------------------------------------------- */
+.belmont-floorplan-box {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 2.2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.floorplan-box-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 1.2rem;
+  margin-bottom: 1.8rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.floorplan-nav-pills {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-surface);
+  padding: 0.25rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-light);
+}
+
+.floorplan-pill {
+  background: transparent;
+  border: none;
+  color: var(--text-body);
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.floorplan-pill:hover {
+  color: var(--brand-orange);
+}
+
+.floorplan-pill.active {
+  background: var(--brand-orange);
+  color: #FFFFFF;
+}
+
+.floorplan-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.floorplan-blueprint-card {
+  background: var(--bg-surface);
+  border: 1px dashed var(--brand-orange-border);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.blueprint-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  color: var(--brand-navy-dark);
+}
+
+.blueprint-graphic-box {
+  width: 100%;
+  max-width: 320px;
+  height: 220px;
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.floorplan-specs-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.specs-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.specs-unit-title {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.specs-unit-price {
+  font-family: var(--font-numbers);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--brand-orange);
+}
+
+.specs-table {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.6rem 0.9rem;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 0.82rem;
+}
+
+.spec-row:last-child {
+  border-bottom: none;
+}
+
+.spec-lbl {
+  color: var(--text-muted);
+}
+
+.spec-val {
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+/* --------------------------------------------------------------------------
+   INVESTOR FAQ ACCORDION
+   -------------------------------------------------------------------------- */
+.faq-accordion-container {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.faq-item {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.faq-item:hover, .faq-item.active {
+  border-color: var(--brand-orange-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.faq-question-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.faq-question-text {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1.4;
+  padding-right: 1rem;
+}
+
+.faq-chevron {
+  color: var(--brand-orange);
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.faq-item.active .faq-chevron {
+  transform: rotate(180deg);
+}
+
+.faq-answer-pane {
+  display: none;
+  padding: 0 1.5rem 1.4rem;
+  color: var(--text-body);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  border-top: 1px solid var(--border-light);
+  background: #FFFFFF;
+}
+
+.faq-item.active .faq-answer-pane {
+  display: block;
+}
+
+@media (max-width: 992px) {
+  .floorplan-content-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .belmont-floorplan-box {
+    padding: 1.4rem;
+  }
+
+  .floorplan-nav-pills {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .floorplan-pill {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.74rem;
+    white-space: nowrap;
+  }
+
+  .faq-question-btn {
+    padding: 1rem 1.2rem;
+  }
+
+  .faq-question-text {
+    font-size: 0.88rem;
+  }
+
+  .faq-answer-pane {
+    padding: 0 1.2rem 1.2rem;
+    font-size: 0.85rem;
+  }
+}

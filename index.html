@@ -41,6 +41,7 @@
         <a href="#roi-calculator" class="nav-item">Yield Calculator</a>
         <a href="#narrative" class="nav-item">Mainland Luxury</a>
         <a href="#trust-center" class="nav-item">Diaspora Trust</a>
+        <a href="#faq" class="nav-item">FAQ</a>
         <a href="#contact" class="nav-item">Contact</a>
       </nav>
 
@@ -245,6 +246,22 @@
           <a href="https://wa.me/2348092302956?text=Hello%20SEKURED!%20Please%20send%20me%20the%20complete%20Belmont%20Residence%20investor%20dossier%20and%20floorplans." target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-block">
             Download Belmont Investor Dossier (WhatsApp)
           </a>
+              <!-- Belmont Architectural Floor Plan Visualizer -->
+      <div class="belmont-floorplan-box" style="margin-top: 3.5rem;">
+        <div class="floorplan-box-header">
+          <div>
+            <span class="ticker-badge" style="background: var(--brand-navy-dark);">Architectural Blueprints</span>
+            <h3 class="serif-heading" style="font-size: 1.35rem; color: var(--text-dark); margin-top: 0.3rem;">Belmont Residence Unit Layouts</h3>
+          </div>
+          <div class="floorplan-nav-pills">
+            <button class="floorplan-pill active" data-unit="studio">Studio (42 SQM)</button>
+            <button class="floorplan-pill" data-unit="1bed">1-Bedroom Suite (68 SQM)</button>
+            <button class="floorplan-pill" data-unit="penthouse">2-Bed Penthouse (125 SQM)</button>
+          </div>
+        </div>
+
+        <div class="floorplan-content-grid" id="floorplanContentGrid">
+          <!-- Dynamically populated by main.ts -->
         </div>
       </div>
     </div>
@@ -581,6 +598,99 @@
       <span>WhatsApp Sales Desk</span>
     </a>
   </div>
+
+  <!-- Investor Due Diligence FAQ -->
+  <section class="section" id="faq" style="background: #FFFFFF; border-top: 1px solid var(--border-light);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Due Diligence</span>
+        <h2 class="section-title">Frequently Answered Investor Inquiries</h2>
+        <p class="section-desc">
+          Direct answers to common questions regarding title documentation, off-plan milestone security, resale liquidity, and short-let revenue distribution.
+        </p>
+      </div>
+
+      <div class="faq-accordion-container" id="faqAccordion">
+        <!-- FAQ Item 1 -->
+        <div class="faq-item active">
+          <button class="faq-question-btn" aria-expanded="true">
+            <span class="faq-question-text">What exact legal title documents do I receive upon purchasing a unit?</span>
+            <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer-pane">
+            <p>
+              Upon initial deposit, you immediately execute an official <strong>Contract of Sale</strong> and receive your <strong>Allocation Letter</strong>. Upon completion of milestone payments, you are issued a registered <strong>Deed of Assignment</strong> with an extract of the root <strong>Governor's Consent</strong>, granting you unencumbered, permanent freehold ownership. All documents are available for independent legal verification prior to committing capital.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="faq-item">
+          <button class="faq-question-btn" aria-expanded="false">
+            <span class="faq-question-text">What is the delivery date for Belmont Residence and what guarantees exist for timely completion?</span>
+            <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer-pane">
+            <p>
+              Belmont Residence is scheduled for key handover in <strong>Q4 2026</strong> (currently at 72% structural completion). Our sales contracts incorporate milestone penalty guarantees: tranches are only called as physical construction milestones are reached, ensuring your funds are strictly linked to verified on-site progress.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="faq-item">
+          <button class="faq-question-btn" aria-expanded="false">
+            <span class="faq-question-text">Can I resell or flip my unit off-plan before construction is finished?</span>
+            <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer-pane">
+            <p>
+              Yes. Investors who enter during the pre-launch or foundation stage (from ₦20M deposit) may assign their contract to a secondary buyer at current market value prior to completion. SEKURED provides full administrative re-assignment support through our investor desk, allowing you to capture capital appreciation early.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="faq-item">
+          <button class="faq-question-btn" aria-expanded="false">
+            <span class="faq-question-text">How does the turnkey short-let management work, and how are payouts distributed?</span>
+            <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer-pane">
+            <p>
+              SEKURED manages an on-site hospitality operations desk. We handle guest sourcing (via Airbnb, Booking.com, corporate and university executive partnerships), biometric keyless access, linen turnover, and maintenance. Net rental earnings are audited and distributed quarterly directly to your nominated NGN or domiciliary USD account, providing a 100% hands-free passive yield.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 5 -->
+        <div class="faq-item">
+          <button class="faq-question-btn" aria-expanded="false">
+            <span class="faq-question-text">I am based in the UK/US/Canada. How can I inspect the site without traveling to Lagos?</span>
+            <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer-pane">
+            <p>
+              We host private <strong>Live 1-on-1 WhatsApp Video Inspections</strong>. Our project engineers walk you through the active site at 1, Montgomery Road, Akoka, showing you the exact slab, blockwork, electrical conduits, and surrounding neighborhood in real-time. You may also appoint an independent lawyer or family representative to conduct an in-person physical inspection at any time.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 6 -->
+        <div class="faq-item">
+          <button class="faq-question-btn" aria-expanded="false">
+            <span class="faq-question-text">What utilities and security infrastructure are provided at the residences?</span>
+            <svg class="faq-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer-pane">
+            <p>
+              All developments feature <strong>24/7 dual power architecture</strong> (heavy-duty industrial generator bank coupled with a solar hybrid inverter), centralized water treatment plant, high-speed fiber internet pre-wiring, biometric access turnstiles, and 24-hour armed patrol personnel.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Site Footer -->
   <footer class="site-footer" id="contact">
