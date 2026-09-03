@@ -1573,3 +1573,117 @@ button, input, select, textarea {
     border-radius: 50%;
   }
 }
+
+/* Extra polish for mobile screens (< 640px and < 480px) */
+@media (max-width: 640px) {
+  .top-ticker {
+    display: none; /* Hide ticker on small mobile to give immediate view of brand & hero */
+  }
+
+  .site-header {
+    height: 64px;
+  }
+
+  .header-inner {
+    height: 64px;
+  }
+
+  .brand-logo-img {
+    height: 30px;
+  }
+
+  .brand-logo-text {
+    font-size: 1.05rem;
+  }
+
+  #headerInspectionBtn {
+    display: none; /* Inspection button is primary in hero and cards */
+  }
+
+  .btn-wa-ghost {
+    padding: 0.45rem 0.85rem;
+    font-size: 0.74rem;
+  }
+
+  .hero-section {
+    padding: 2.5rem 0 3.5rem;
+  }
+
+  .hero-media-wrap {
+    height: 250px;
+  }
+
+  .hero-card-details {
+    padding: 1.2rem;
+  }
+
+  .hero-card-title {
+    font-size: 1.2rem;
+  }
+
+  .hero-card-price {
+    font-size: 1.15rem;
+  }
+
+  .hero-roi-pill {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+
+  .portfolio-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 0.6rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tab-btn {
+    flex-shrink: 0;
+    font-size: 0.78rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .calc-container-box {
+    padding: 1.4rem;
+  }
+
+  .calc-results-card {
+    padding: 1.4rem;
+  }
+
+  .calc-stat-main {
+    font-size: 1.8rem;
+  }
+
+  .drawer-panel {
+    padding: 1.8rem 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .unit-row {
+    grid-template-columns: 1.1fr 1fr 0.9fr;
+    font-size: 0.72rem;
+    padding: 0.5rem 0.6rem;
+  }
+
+  .unit-row.header-row {
+    font-size: 0.64rem;
+  }
+
+  .card-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .card-actions .btn {
+    width: 100%;
+  }
+
+  .calc-breakdown-grid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+}
