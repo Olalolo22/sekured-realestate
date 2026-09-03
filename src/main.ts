@@ -1,4 +1,4 @@
-import { PROJECTS_DATA, COMPANY_DETAILS, TESTIMONIALS_DATA, ProjectItem } from './data/projects';
+import { PROJECTS_DATA, COMPANY_DETAILS, TESTIMONIALS_DATA, ProjectItem, UnitOption } from './data/projects';
 
 // Helper: Format Naira currency cleanly
 function formatNaira(val: number): string {
@@ -87,7 +87,7 @@ function renderProjects(filterSlug: string = 'all') {
 
           <div class="card-actions">
             <a href="${waUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="flex: 1.2;">
-              Claim Unit Allocation
+              Claim Allocation
             </a>
             <button class="btn btn-secondary card-inspect-btn" data-project="${project.name}" style="flex: 0.8;">
               Inspect Site
@@ -127,25 +127,20 @@ function renderTestimonials() {
 }
 
 // ---------------------------------------------------------------------------
-// 3. INTERACTIVE SHORT-LET YIELD CALCULATOR
+// 3. OFFICIAL INVESTMENT & CASHFLOW MATRIX (NO SLIDERS — LOCKED AUDITED DATA)
 // ---------------------------------------------------------------------------
-interface CalcState {
+interface MatrixState {
   unitId: string;
   isDepositMode: boolean;
-  nightlyRate: number;
-  occupancyPercent: number;
 }
 
-const calcState: CalcState = {
+const matrixState: MatrixState = {
   unitId: 'belmont-studio',
-  isDepositMode: false,
-  nightlyRate: 65000,
-  occupancyPercent: 65
+  isDepositMode: true
 };
 
-// All available units flattened for quick lookup
-function getAllUnits() {
-  const list: { project: ProjectItem; unit: typeof PROJECTS_DATA[0]['units'][0] }[] = [];
+function getAllUnits(): { project: ProjectItem; unit: UnitOption }[] {
+  const list: { project: ProjectItem; unit: UnitOption }[] = [];
   PROJECTS_DATA.forEach(p => {
     p.units.forEach(u => {
       list.push({ project: p, unit: u });
@@ -154,121 +149,126 @@ function getAllUnits() {
   return list;
 }
 
-function updateCalculator() {
-  const allUnits = getAllUnits();
-  const selected = allUnits.find(item => item.unit.id === calcState.unitId) || allUnits[0];
+function updateMatrix() {
+  const all = getAllUnits();
+  const selected = all.find(item => item.unit.id === matrixState.unitId) || all[0];
   const unit = selected.unit;
   const project = selected.project;
 
-  // Sync inputs
-  const nightlyDisplay = document.getElementById('nightlyRateDisplay');
-  const occupancyDisplay = document.getElementById('occupancyDisplay');
-  const annualYieldResult = document.getElementById('annualYieldResult');
-  const roiPercentResult = document.getElementById('roiPercentResult');
-  const monthlyCashflowResult = document.getElementById('monthlyCashflowResult');
-  const capitalEntryResult = document.getElementById('capitalEntryResult');
-  const fiveYearNetResult = document.getElementById('fiveYearNetResult');
-  const capitalGainResult = document.getElementById('capitalGainResult');
-  const lockInYieldBtn = document.getElementById('lockInYieldBtn') as HTMLAnchorElement;
+  // DOM Elements
+  const annualRoiElem = document.getElementById('matrixAnnualRoi');
+  const yieldPercentElem = document.getElementById('matrixRoiYieldPercent');
+  const quarterlyElem = document.getElementById('matrixQuarterlyPayout');
+  const initialEntryElem = document.getElementById('matrixInitialEntry');
+  const outrightPriceElem = document.getElementById('matrixOutrightPrice');
+  const capitalGainElem = document.getElementById('matrixCapitalGain');
+  const stepsList = document.getElementById('milestoneStepsList');
+  const planBadge = document.getElementById('milestonePlanBadge');
+  const requestBtn = document.getElementById('matrixRequestPlanBtn') as HTMLAnchorElement;
 
-  if (nightlyDisplay) nightlyDisplay.textContent = formatNairaFull(calcState.nightlyRate);
-  if (occupancyDisplay) {
-    const days = Math.round(30 * (calcState.occupancyPercent / 100));
-    occupancyDisplay.textContent = `${calcState.occupancyPercent}% (~${days} days/mo)`;
+  // Locked Official Figures
+  const quarterlyPayout = Math.round(unit.projectedAnnualRoiNgn / 4);
+  const capitalBase = matrixState.isDepositMode ? unit.initialDepositNgn : unit.outrightPriceNgn;
+  const capitalGainAmount = Math.round(unit.outrightPriceNgn * 0.35);
+
+  if (annualRoiElem) annualRoiElem.textContent = formatNairaFull(unit.projectedAnnualRoiNgn);
+  if (yieldPercentElem) yieldPercentElem.textContent = `${unit.projectedRoiPercent}% Published Annual Yield`;
+  if (quarterlyElem) quarterlyElem.textContent = `${formatNairaFull(quarterlyPayout)}/qtr`;
+  if (initialEntryElem) initialEntryElem.textContent = formatNairaFull(capitalBase);
+  if (outrightPriceElem) outrightPriceElem.textContent = formatNairaFull(unit.outrightPriceNgn);
+  if (capitalGainElem) capitalGainElem.textContent = `+35% (${formatNaira(capitalGainAmount)})`;
+
+  // Milestone Schedule Breakdown
+  if (stepsList && planBadge) {
+    if (matrixState.isDepositMode) {
+      planBadge.textContent = '3 Milestones';
+      const balance = unit.outrightPriceNgn - unit.initialDepositNgn;
+      const tranche2 = Math.round(balance * 0.5);
+      const tranche3 = balance - tranche2;
+
+      stepsList.innerHTML = `
+        <div class="milestone-step-item">
+          <div class="step-info-col">
+            <span class="step-title">Tranche 1: Initial Allocation Deposit</span>
+            <span class="step-timing">Upon signing allocation agreement</span>
+          </div>
+          <span class="step-amount">${formatNairaFull(unit.initialDepositNgn)}</span>
+        </div>
+        <div class="milestone-step-item">
+          <div class="step-info-col">
+            <span class="step-title">Tranche 2: Superstructure Milestone</span>
+            <span class="step-timing">Upon roofing & MEP rough-in completion</span>
+          </div>
+          <span class="step-amount">${formatNairaFull(tranche2)}</span>
+        </div>
+        <div class="milestone-step-item">
+          <div class="step-info-col">
+            <span class="step-title">Tranche 3: Handover & Deed Execution</span>
+            <span class="step-timing">Upon completion & key handover</span>
+          </div>
+          <span class="step-amount">${formatNairaFull(tranche3)}</span>
+        </div>
+      `;
+    } else {
+      planBadge.textContent = 'Outright Single Payment';
+      stepsList.innerHTML = `
+        <div class="milestone-step-item">
+          <div class="step-info-col">
+            <span class="step-title">100% Outright Purchase & Title Conveyance</span>
+            <span class="step-timing">Immediate contract execution, deed conveyance & priority key handover</span>
+          </div>
+          <span class="step-amount">${formatNairaFull(unit.outrightPriceNgn)}</span>
+        </div>
+      `;
+    }
   }
 
-  // Financial calculations
-  const occupiedNightsPerYear = Math.round(365 * (calcState.occupancyPercent / 100));
-  const grossAnnualIncome = occupiedNightsPerYear * calcState.nightlyRate;
-  
-  // Turnkey operating & management expense estimate (20% for cleaning, concierge, marketing)
-  const netAnnualYield = Math.round(grossAnnualIncome * 0.80);
-  const monthlyCashflow = Math.round(netAnnualYield / 12);
-  const fiveYearNet = netAnnualYield * 5;
+  // WhatsApp Button URL
+  if (requestBtn) {
+    const planName = matrixState.isDepositMode ? 'Deposit-to-Own Milestone Plan' : 'Outright Single Payment Plan';
+    const message = `*OFFICIAL ALLOCATION & CASHFLOW SCHEDULE REQUEST — SEKURED GROUP*
+*Development:* ${project.name}
+*Unit:* ${unit.name} (Ref: ${unit.refCode})
+*Payment Structure:* ${planName}
+*Initial Capital Entry:* ${formatNairaFull(capitalBase)}
+*Outright Asset Value:* ${formatNairaFull(unit.outrightPriceNgn)}
+*Audited Annual ROI:* ${formatNairaFull(unit.projectedAnnualRoiNgn)} (${unit.projectedRoiPercent}% Yield)
+*Quarterly Payout:* ${formatNairaFull(quarterlyPayout)}/qtr
 
-  // Capital base depending on acquisition mode
-  const capitalBase = calcState.isDepositMode ? unit.initialDepositNgn : unit.outrightPriceNgn;
-  const calculatedRoi = (netAnnualYield / unit.outrightPriceNgn) * 100;
-  const capitalAppreciation = Math.round(unit.outrightPriceNgn * 0.35);
-
-  if (annualYieldResult) annualYieldResult.textContent = formatNairaFull(netAnnualYield);
-  if (roiPercentResult) {
-    roiPercentResult.textContent = calcState.isDepositMode 
-      ? `~${calculatedRoi.toFixed(1)}% Yield (${formatNaira(unit.initialDepositNgn)} Initial Deposit Plan)`
-      : `~${calculatedRoi.toFixed(1)}% Net Annual ROI (Outright Asset)`;
-  }
-  if (monthlyCashflowResult) monthlyCashflowResult.textContent = formatNairaFull(monthlyCashflow);
-  if (capitalEntryResult) capitalEntryResult.textContent = formatNairaFull(capitalBase);
-  if (fiveYearNetResult) fiveYearNetResult.textContent = formatNaira(fiveYearNet);
-  if (capitalGainResult) capitalGainResult.textContent = `+35% (${formatNaira(capitalAppreciation)})`;
-
-  // WhatsApp Lock-in link
-  if (lockInYieldBtn) {
-    const message = `*SEKURED YIELD SIMULATION LOCK-IN*
-Project: ${project.name}
-Unit: ${unit.name} (Ref: ${unit.refCode})
-Acquisition: ${calcState.isDepositMode ? 'Deposit-to-Own Plan' : 'Outright Purchase'}
-Initial Entry: ${formatNairaFull(capitalBase)}
-Nightly Rate Assumption: ${formatNairaFull(calcState.nightlyRate)}
-Occupancy Assumption: ${calcState.occupancyPercent}%
-Projected Annual Net Yield: ${formatNairaFull(netAnnualYield)} (~${calculatedRoi.toFixed(1)}%)
-
-Hello SEKURED! I ran this yield simulation on your website and would like to lock in this allocation.`;
-    lockInYieldBtn.href = createWhatsAppUrl(message);
+Hello SEKURED! Please send me the official contract documents and allocation form for this unit.`;
+    requestBtn.href = createWhatsAppUrl(message);
   }
 }
 
-function initCalculator() {
-  const unitSelect = document.getElementById('calcUnitSelect') as HTMLSelectElement;
-  const toggleOutright = document.getElementById('toggleOutrightBtn');
-  const toggleDeposit = document.getElementById('toggleDepositBtn');
-  const nightlySlider = document.getElementById('nightlyRateSlider') as HTMLInputElement;
-  const occupancySlider = document.getElementById('occupancySlider') as HTMLInputElement;
+function initMatrix() {
+  const select = document.getElementById('matrixUnitSelect') as HTMLSelectElement;
+  const toggleDeposit = document.getElementById('toggleDepositPlanBtn');
+  const toggleOutright = document.getElementById('toggleOutrightPlanBtn');
 
-  if (unitSelect) {
-    unitSelect.addEventListener('change', (e) => {
-      calcState.unitId = (e.target as HTMLSelectElement).value;
-      const all = getAllUnits();
-      const match = all.find(item => item.unit.id === calcState.unitId);
-      if (match && nightlySlider) {
-        calcState.nightlyRate = match.unit.estimatedNightlyRateNgn;
-        nightlySlider.value = String(match.unit.estimatedNightlyRateNgn);
-      }
-      updateCalculator();
+  if (select) {
+    select.addEventListener('change', (e) => {
+      matrixState.unitId = (e.target as HTMLSelectElement).value;
+      updateMatrix();
     });
   }
 
-  if (toggleOutright && toggleDeposit) {
-    toggleOutright.addEventListener('click', () => {
-      calcState.isDepositMode = false;
-      toggleOutright.classList.add('active');
-      toggleDeposit.classList.remove('active');
-      updateCalculator();
-    });
-
+  if (toggleDeposit && toggleOutright) {
     toggleDeposit.addEventListener('click', () => {
-      calcState.isDepositMode = true;
+      matrixState.isDepositMode = true;
       toggleDeposit.classList.add('active');
       toggleOutright.classList.remove('active');
-      updateCalculator();
+      updateMatrix();
+    });
+
+    toggleOutright.addEventListener('click', () => {
+      matrixState.isDepositMode = false;
+      toggleOutright.classList.add('active');
+      toggleDeposit.classList.remove('active');
+      updateMatrix();
     });
   }
 
-  if (nightlySlider) {
-    nightlySlider.addEventListener('input', (e) => {
-      calcState.nightlyRate = Number((e.target as HTMLInputElement).value);
-      updateCalculator();
-    });
-  }
-
-  if (occupancySlider) {
-    occupancySlider.addEventListener('input', (e) => {
-      calcState.occupancyPercent = Number((e.target as HTMLInputElement).value);
-      updateCalculator();
-    });
-  }
-
-  updateCalculator();
+  updateMatrix();
 }
 
 // ---------------------------------------------------------------------------
@@ -346,7 +346,7 @@ Hello SEKURED Sales Desk! I would like to confirm my inspection reservation for 
 document.addEventListener('DOMContentLoaded', () => {
   renderProjects('all');
   renderTestimonials();
-  initCalculator();
+  initMatrix();
   initInspectionDrawer();
 
   // Set default date for inspection (tomorrow)

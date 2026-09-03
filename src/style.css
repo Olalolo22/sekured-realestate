@@ -1540,3 +1540,94 @@ button, input, select, textarea {
     border-radius: 50%;
   }
 }
+
+/* --------------------------------------------------------------------------
+   OFFICIAL INVESTMENT & MILESTONE MATRIX STYLES
+   -------------------------------------------------------------------------- */
+.milestone-schedule-box {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.milestone-box-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 0.6rem;
+}
+
+.milestone-box-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-dark);
+}
+
+.milestone-badge {
+  background: var(--brand-orange-light);
+  color: var(--brand-orange);
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--brand-orange-border);
+}
+
+.milestone-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.milestone-step-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0.6rem 0.8rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+}
+
+.step-info-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.step-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.step-timing {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.step-amount {
+  font-family: var(--font-numbers);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--brand-orange);
+  text-align: right;
+}
+
+.management-guarantee-note {
+  background: var(--brand-orange-light);
+  border: 1px solid var(--brand-orange-border);
+  border-radius: var(--radius-sm);
+  padding: 0.9rem 1.1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
